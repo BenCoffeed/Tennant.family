@@ -1,4 +1,4 @@
-# -*- mode: ruby -*-
+#-*- mode: ruby -*-
 # vi: set ft=ruby :
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -74,12 +74,8 @@ config.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel
 config.vm.network "private_network",
         ip: "172.12.8.150"
 
-#change VM provider
-config.vm.provider :vmware_fusion do |vb, override|
-    override.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel/coreos_production_vagrant_vmware_fusion.box"
-end
-#fix Vagrant Plug-in 
-if Vagrant.has_plugin?("vagrant-vbguest") then
-    config.vbguest.auto_update = false
+config.vm.provider "virtualbox" do |vb|
+	# Customize the amount of memory on the VM:
+	vb.memory = "1024"
 end
 end
