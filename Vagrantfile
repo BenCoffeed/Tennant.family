@@ -68,4 +68,18 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+
+config.vm.box = "coreos_test"
+config.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel/coreos_production_vagrant.box"
+config.vm.network "private_network",
+        ip: "172.12.8.150"
+
+#change VM provider
+config.vm.provider :vmware_fusion do |vb, override|
+    override.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel/coreos_production_vagrant_vmware_fusion.box"
+end
+#fix Vagrant Plug-in 
+if Vagrant.has_plugin?("vagrant-vbguest") then
+    config.vbguest.auto_update = false
+end
 end
