@@ -70,12 +70,10 @@ Vagrant.configure(2) do |config|
   # SHELL
 
 config.vm.box = "coreos_test"
-config.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel/coreos_production_vagrant.box"
-config.vm.network "private_network",
-        ip: "172.12.8.150"
-
-config.vm.provider "virtualbox" do |vb|
-	# Customize the amount of memory on the VM:
-	vb.memory = "1024"
-end
+	config.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel/coreos_production_vagrant.box"
+	config.vm.network "public_network",bridge: "en0: Wi-Fi (AirPort)",use_dhcp_assigned_default_route: true
+	config.vm.provider "virtualbox" do |vb|
+		# Customize the amount of memory on the VM:
+		vb.memory = "1024"
+	end
 end
